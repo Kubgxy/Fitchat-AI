@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    
+    /* Modules */
+    "module": "commonjs",
+    
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true,
+
+    /* Custom Type Roots */
+    "typeRoots": ["./node_modules/@types", "./@types"],  // กำหนดให้ TypeScript รู้จักโฟลเดอร์ที่เก็บ types
+    "types": ["node", "express"],  // ระบุให้โหลด types ของ node และ express
+  },
+  "include": ["src/**/*", "@types"],  // รวมโฟลเดอร์ src และ @types
+  "exclude": ["node_modules", "dist"]  // ไม่รวม node_modules และ dist
+}
