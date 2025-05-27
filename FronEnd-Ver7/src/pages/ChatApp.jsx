@@ -18,7 +18,8 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { API_BASEURL } from "../../lib/api";
+import { API_BASEURL } from "../../lib/api"; 
+
 
 const API_BASE = "https://dc41-34-75-70-120.ngrok-free.app";
 

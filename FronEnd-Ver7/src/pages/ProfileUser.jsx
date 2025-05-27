@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 import { User, Edit2, Save } from "lucide-react";
 import moment from "moment";
 import "moment/locale/th";
-import { API_BASEURL } from "../lib/api";
+import { API_BASEURL } from "../../lib/api"; 
+
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);

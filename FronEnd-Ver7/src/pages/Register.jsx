@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
 import { useTheme } from "../components/ThemeContext";
-import { API_BASEURL } from "../lib/api";
+import { API_BASEURL } from "../../lib/api"; 
 
 const Register = () => {
   const navigate = useNavigate();

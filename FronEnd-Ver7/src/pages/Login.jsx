@@ -4,7 +4,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { useTheme } from "../components/ThemeContext";
-import { API_BASEURL } from "../lib/api";
+import { API_BASEURL } from "../../lib/api"; 
+
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);

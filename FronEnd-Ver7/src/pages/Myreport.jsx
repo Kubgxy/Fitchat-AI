@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AlertCircle, Clock, FileText, Mail } from "lucide-react";
 import Swal from "sweetalert2";
-import { API_BASEURL } from "../lib/api"; // Adjust the import path as necessary
+import { API_BASEURL } from "../../lib/api"; 
+
 
 const MyReports = () => {
   const [reports, setReports] = useState([]);

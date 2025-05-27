@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Send, AlertCircle, MessageSquareWarning } from "lucide-react";
 import Swal from "sweetalert2";
-import { API_BASEURL } from "../lib/api";
+import { API_BASEURL } from "../../lib/api"; 
 
 const Report = () => {
   const navigate = useNavigate();
