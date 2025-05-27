@@ -35,7 +35,7 @@ const Profile = () => {
       const res = await axios.get(`${API_BASEURL}/api/auth/getuser`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
+      console.log("🎯 res.data:", res.data);
       setUserData(res.data);
       setFormData(res.data);
       setLoading(false);
