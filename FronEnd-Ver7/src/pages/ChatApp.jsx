@@ -20,7 +20,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { API_BASEURL } from "../../lib/api";
 
-const API_BASE = "https://30c3-34-75-70-120.ngrok-free.app";
+const API_BASE = "https://df71-34-75-70-120.ngrok-free.app";
 
 const ChatApp = () => {
   const messagesEndRef = useRef(null);
@@ -183,10 +183,6 @@ const ChatApp = () => {
       setMessages(res.data.messages || []);
       setChatTitle(res.data.title || "ชื่อแชท");
       setChatCreatedAt(res.data.created_at || null);
-
-      if ((res.data.messages || []).length > 0) {
-        setHasStartedChat(true);
-      }
     } catch (err) {
       console.error("❌ โหลดแชทไม่สำเร็จ", err);
       setMessages([]);
