@@ -166,8 +166,6 @@ const ChatApp = () => {
     try {
       const res = await axios.get(`${API_BASE}/get-my-chats`, { headers });
       setChats(res.data);
-      setChatTitle(res.data.title || "ชื่อแชท"); // ✅ ตั้งชื่อแชท
-      setChatCreatedAt(res.data.created_at || null); // ✅ ตั้งวันที่
     } catch (error) {
       console.error("❌ ดึงแชทไม่สำเร็จ:", error);
       setChats([]);
@@ -395,30 +393,9 @@ const ChatApp = () => {
                           ? "bg-blue-500/20 border-l-4 border-blue-900 dark:bg-gray-300/30"
                           : "bg-gray-100"
                       }`}
-                      onClick={async () => {
+                      onClick={() => {
                         navigate(`?chat_id=${chat.chat_id}`);
-                        setSelectedChatId(chat.chat_id);
-                        try {
-                          const res = await axios.get(
-                            `https://firestore.googleapis.com/v1/projects/history--fitchat-ai/databases/(default)/documents/chats/${chat.chat_id}`
-                          );
-                          const msgList =
-                            res.data.fields.messages.arrayValue.values.map(
-                              (m) => ({
-                                role: m.mapValue.fields.role.stringValue,
-                                content: m.mapValue.fields.content.stringValue,
-                              })
-                            );
-                          setMessages(msgList);
-                          const title =
-                            res.data.fields.title?.stringValue || "";
-                          const createdAt =
-                            res.data.fields.created_at?.timestampValue || null;
-                          setChatTitle(title);
-                          setChatCreatedAt(createdAt);
-                        } catch (error) {
-                          console.error("❌ โหลดข้อความล้มเหลว", error);
-                        }
+                        // ✅ ไม่ต้อง setSelectedChatId และไม่ต้อง fetchChat ตรงนี้
                       }}
                     >
                       <div className="flex justify-between items-center text-white/80 dark:text-black/80 ">
