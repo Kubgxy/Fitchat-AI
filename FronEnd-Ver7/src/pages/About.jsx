@@ -107,7 +107,7 @@ const About = () => {
             <div className="flex flex-col items-center">
               <div className="w-40 h-40 bg-white/20 rounded-full flex items-center justify-center mb-4 overflow-hidden">
                 <img
-                  src="/src/assets/Guy.jpg"
+                  src="/Guy.jpg"
                   alt="หาญณรงค์"
                   className="w-full h-full object-cover"
                 />
@@ -122,7 +122,7 @@ const About = () => {
             <div className="flex flex-col items-center">
               <div className="w-40 h-40 bg-white/20 rounded-full flex items-center justify-center mb-4 overflow-hidden">
                 <img
-                  src="/src/assets/Oak.jpg"
+                  src="/Oak.jpg"
                   alt="ธนกร"
                   className="w-full h-full object-cover"
                 />
@@ -131,21 +131,6 @@ const About = () => {
                 ธนกร สิงห์ก้อม
               </h3>
               <p className="text-gray-200 text-center dark:text-black/70">65007905</p>
-            </div>
-
-            {/* สมาชิกคนที่ 3 */}
-            <div className="flex flex-col items-center">
-              <div className="w-40 h-40 bg-white/20 rounded-full flex items-center justify-center mb-4 overflow-hidden">
-                <img
-                  src="/src/assets/Fourth.jpg"
-                  alt="ภัทรพิสิฎ"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-2 dark:text-black/80">
-                ภัทรพิสิฎ ทองเกิด
-              </h3>
-              <p className="text-gray-200 text-center dark:text-black/70">65007912</p>
             </div>
           </div>
         </div>

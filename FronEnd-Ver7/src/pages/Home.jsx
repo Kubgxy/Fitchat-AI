@@ -36,7 +36,7 @@ const Home = () => {
           {/* โลโก้ด้านขวา */}
           <div className="flex flex-col items-center justify-center">
             <motion.img
-              src="/src/assets/Logo4.png"
+              src="/Logo4.png"
               alt="AI Chat"
               className="w-[240px] h-[240px] lg:w-[300px] lg:h-[300px]"
               animate={{ y: [0, -20, 0] }}

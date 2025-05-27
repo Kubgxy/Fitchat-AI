@@ -160,7 +160,7 @@ const ChatHistory = () => {
           ) ? (
           <div className="text-center text-gray-400 mt-[80px] animate-fade-in">
             <img
-              src="/src/assets/Logo4.png"
+              src="/Logo4.png"
               alt="ไม่มีประวัติการแชท"
               className="mx-auto w-[300px] h-[300px] mb-4 opacity-70"
             />

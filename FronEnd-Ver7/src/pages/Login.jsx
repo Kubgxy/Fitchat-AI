@@ -114,7 +114,7 @@ const Login = () => {
       <div className="lg:mt-[-100px] text-center lg:text-left">
         <div className="flex justify-center lg:justify-start">
           <motion.img
-            src="/src/assets/Logo4.png"
+            src="/Logo4.png"
             alt="AI Chat"
             className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
             animate={{ y: [0, -20, 0] }}

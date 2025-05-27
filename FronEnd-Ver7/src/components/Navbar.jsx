@@ -75,7 +75,7 @@ const Navbar = () => {
       <div className="w-full bg-white/10 backdrop-blur-md text-white px-6 py-3 flex items-center justify-between shadow-md">
         <Link to="/home" className="flex items-center gap-2">
           <img
-            src="/src/assets/Logo4.png"
+            src="/Logo4.png"
             alt="FITCHAT Logo"
             className="h-[55px] w-auto hover:opacity-80 transition-opacity"
           />
