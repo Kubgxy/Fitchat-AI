@@ -183,6 +183,10 @@ const ChatApp = () => {
       setMessages(res.data.messages || []);
       setChatTitle(res.data.title || "ชื่อแชท");
       setChatCreatedAt(res.data.created_at || null);
+
+      if ((res.data.messages || []).length > 0) {
+        setHasStartedChat(true);
+      }
     } catch (err) {
       console.error("❌ โหลดแชทไม่สำเร็จ", err);
       setMessages([]);
