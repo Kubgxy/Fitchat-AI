@@ -672,7 +672,7 @@ const ChatApp = () => {
                   <div className="bg-gray-200 text-gray-700 text-sm px-4 py-2 rounded-2xl shadow max-w-[60%] animate-pulse">
                     <div className="flex items-center">
                       <img
-                        src="/src/assets/Logo4.png"
+                        src="/Logo4.png"
                         alt="AI"
                         className="w-10 h-10 mr-2 rounded-full border border-blue-500/40"
                       />

@@ -46,8 +46,9 @@ const Register = () => {
         : setShowConfirm(!showConfirm);
 
     const checkExists = async (field, value) => {
+      const apiField = field === "phone_number" ? "phone" : field;
       try {
-        const res = await axios.post(`${API_BASEURL}/api/auth/check-${field}`, {
+        const res = await axios.post(`${API_BASEURL}/api/auth/check-${apiField}`, {
           [field]: value,
         });
 
@@ -188,17 +189,17 @@ const Register = () => {
   };
 
   const validateStep2 = () => {
-  if (!formData.first_name || !formData.last_name) {
-    Swal.fire({
-      icon: "warning",
-      title: "กรอกข้อมูลไม่ครบ",
-      text: "กรุณากรอกชื่อและนามสกุลให้ครบ",
-    });
-    return false;
-  }
+    if (!formData.first_name || !formData.last_name) {
+      Swal.fire({
+        icon: "warning",
+        title: "กรอกข้อมูลไม่ครบ",
+        text: "กรุณากรอกชื่อและนามสกุลให้ครบ",
+      });
+      return false;
+    }
 
-  return true;
-};
+    return true;
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
