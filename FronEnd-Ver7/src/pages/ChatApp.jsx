@@ -21,7 +21,7 @@ import "aos/dist/aos.css";
 import { API_BASEURL } from "../../lib/api"; 
 
 
-const API_BASE = "https://dc41-34-75-70-120.ngrok-free.app";
+const API_BASE = "https://8dee-34-75-70-120.ngrok-free.app";
 
 const ChatApp = () => {
   const messagesEndRef = useRef(null);
@@ -474,7 +474,7 @@ const ChatApp = () => {
               <div className="w-12 h-12 bg-white/20 rounded-full overflow-hidden dark:bg-black/30 flex-shrink-0">
                 {userData?.profile_image ? (
                   <img
-                    src={`${API_BASEURL}${userData.profile_image}`}
+                    src={`${API_BASEURL}${userData.profile_image} || "/userProfile.png"`}
                     alt="avatar"
                     className="w-full h-full object-cover"
                   />
@@ -487,11 +487,11 @@ const ChatApp = () => {
               <div className="flex flex-col ">
                 <div className="flex items-center gap-2 ">
                   <span className=" text-[17px] pt-1">
-                    {userData.first_name} {userData.last_name}
+                    {userData.first_name || "DEK"} {userData.last_name || "COMCSI SPU"}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-1xl text-gray-500 dark:text-black/70">
-                  {userData.email}
+                  {userData.email || "dekspu65@spumail.net"}
                 </div>
               </div>
             </div>
@@ -589,7 +589,7 @@ const ChatApp = () => {
                   >
                     {m.role !== "user" && (
                       <img
-                        src="/src/assets/Logo4.png"
+                        src="/Logo4.png"
                         alt="AI"
                         className="w-10 h-10 mr-2 rounded-full border border-blue-500/40"
                       />
@@ -656,7 +656,7 @@ const ChatApp = () => {
                       <div>
                         {userData?.profile_image ? (
                           <img
-                            src={`${API_BASEURL}${userData.profile_image}`}
+                            src={`${API_BASEURL}${userData.profile_image} || "/userProfile.png"}`}
                             alt="avatar"
                             className="w-10 h-10 ml-2 rounded-full border border-blue-500/40 object-cover"
                           />
