@@ -295,6 +295,24 @@ auth.patch("/change-password", verifyToken, async (req: Request, res: Response) 
   }
 });
 
+auth.post("/check-email", async (req : Request, res : Response) => {
+  const { email } = req.body;
+  const exists = await User.exists({ email });
+  res.json({ exists: !!exists });
+});
+
+auth.post("/check-username", async (req: Request, res: Response) => {
+  const { username } = req.body;
+  const exists = await User.exists({ username });
+  res.json({ exists: !!exists });
+});
+
+auth.post("/check-phone", async (req: Request, res: Response) => {
+  const { phone_number } = req.body;
+  const exists = await User.exists({ phone_number });
+  res.json({ exists: !!exists });
+});
+
 
 
 export default auth;

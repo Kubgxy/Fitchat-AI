@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
 import { useTheme } from "../components/ThemeContext";
-import { API_BASEURL } from "../../lib/api"; 
+import { API_BASEURL } from "../../lib/api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -25,6 +25,11 @@ const Register = () => {
   const [passwordStrength, setPasswordStrength] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(null); // true / false / null
   const [showConfirm, setShowConfirm] = useState(false);
+  const [errors, setErrors] = useState({
+    email: "",
+    username: "",
+    phone_number: "",
+  });
 
   // ฟังก์ชันสำหรับ Input field
   const renderInput = (
@@ -40,9 +45,37 @@ const Register = () => {
         ? setShowPassword(!showPassword)
         : setShowConfirm(!showConfirm);
 
+    const checkExists = async (field, value) => {
+      try {
+        const res = await axios.post(`${API_BASEURL}/api/auth/check-${field}`, {
+          [field]: value,
+        });
+
+        setErrors((prev) => ({
+          ...prev,
+          [field]: res.data.exists
+            ? `${
+                field === "email"
+                  ? "อีเมล"
+                  : field === "username"
+                  ? "ชื่อผู้ใช้"
+                  : "เบอร์โทร"
+              }นี้ถูกใช้งานแล้ว`
+            : "",
+        }));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     const handleChange = (e) => {
       const { value } = e.target;
       setFormData((prev) => ({ ...prev, [name]: value }));
+
+      // ตรวจสอบซ้ำแบบ real-time
+      if (["email", "username", "phone_number"].includes(name)) {
+        checkExists(name, value);
+      }
 
       if (name === "password") {
         setPasswordStrength(getPasswordStrength(value));
@@ -76,6 +109,10 @@ const Register = () => {
           >
             {show ? <EyeOff size={20} /> : <Eye size={20} />}
           </span>
+        )}
+
+        {errors[name] && (
+          <p className="text-xs mt-1 text-red-400">{errors[name]}</p>
         )}
 
         {/* ความแข็งแรงของรหัสผ่าน */}
@@ -120,8 +157,48 @@ const Register = () => {
       return false;
     }
 
+    if (errors.email) {
+      Swal.fire({
+        icon: "error",
+        title: "อีเมลนี้ถูกใช้งานแล้ว",
+        text: "กรุณาใช้ที่อยู่อีเมลอื่น",
+      });
+      return false;
+    }
+
+    if (errors.username) {
+      Swal.fire({
+        icon: "error",
+        title: "ชื่อผู้ใช้นี้ถูกใช้งานแล้ว",
+        text: "กรุณาใช้ชื่อผู้ใช้อื่น",
+      });
+      return false;
+    }
+
+    if (errors.phone_number) {
+      Swal.fire({
+        icon: "error",
+        title: "เบอร์โทรนี้ถูกใช้งานแล้ว",
+        text: "กรุณาใช้เบอร์โทรอื่น",
+      });
+      return false;
+    }
+
     return true;
   };
+
+  const validateStep2 = () => {
+  if (!formData.first_name || !formData.last_name) {
+    Swal.fire({
+      icon: "warning",
+      title: "กรอกข้อมูลไม่ครบ",
+      text: "กรุณากรอกชื่อและนามสกุลให้ครบ",
+    });
+    return false;
+  }
+
+  return true;
+};
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -135,6 +212,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateStep2()) return;
 
     const data = new FormData();
     for (let key in formData) {
