@@ -18,8 +18,7 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { API_BASEURL } from "../../lib/api"; 
-
+import { API_BASEURL } from "../../lib/api";
 
 const API_BASE = "https://8dee-34-75-70-120.ngrok-free.app";
 
@@ -140,14 +139,11 @@ const ChatApp = () => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token"); // ✅ ดึง token มาใช้ตรงนี้
-      const response = await axios.get(
-        `${API_BASEURL}/api/auth/getuser`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${API_BASEURL}/api/auth/getuser`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setUserData(response.data);
     } catch (error) {
       Swal.fire({
@@ -472,22 +468,23 @@ const ChatApp = () => {
             <div className="flex items-center gap-4">
               {/* รูปโปรไฟล์ */}
               <div className="w-12 h-12 bg-white/20 rounded-full overflow-hidden dark:bg-black/30 flex-shrink-0">
-                {userData?.profile_image ? (
-                  <img
-                    src={`${API_BASEURL}${userData.profile_image} || "/userProfile.png"`}
-                    alt="avatar"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <User className="w-full h-full text-white p-2" />
-                )}
+                <img
+                  src={
+                    userData?.profile_image
+                      ? `${API_BASEURL}${userData.profile_image}`
+                      : "/userProfile.png"
+                  }
+                  alt="avatar"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* ข้อมูลผู้ใช้ (ชื่อ + อีเมล) */}
               <div className="flex flex-col ">
                 <div className="flex items-center gap-2 ">
                   <span className=" text-[17px] pt-1">
-                    {userData.first_name || "DEK"} {userData.last_name || "COMCSI SPU"}
+                    {userData.first_name || "DEK"}{" "}
+                    {userData.last_name || "COMCSI SPU"}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-1xl text-gray-500 dark:text-black/70">
@@ -502,7 +499,9 @@ const ChatApp = () => {
       {/* Chat Window */}
       <div
         className={`flex-1 flex flex-col h-[calc(100vh-100px)] mt-[100px] m-6 p-6 rounded-3xl  dark:bg-white/10 transition-all duration-300 ${
-          isSidebarOpen ? "sm:ml-8" : "sm:ml-[-250px] sm:mr-[130px] ml-[250px] mr-0"
+          isSidebarOpen
+            ? "sm:ml-8"
+            : "sm:ml-[-250px] sm:mr-[130px] ml-[250px] mr-0"
         }`}
       >
         {!hasStartedChat && messages.length === 0 ? (
@@ -654,15 +653,15 @@ const ChatApp = () => {
 
                     {m.role === "user" && (
                       <div>
-                        {userData?.profile_image ? (
-                          <img
-                            src={`${API_BASEURL}${userData.profile_image} || "/userProfile.png"}`}
-                            alt="avatar"
-                            className="w-10 h-10 ml-2 rounded-full border border-blue-500/40 object-cover"
-                          />
-                        ) : (
-                          <User className="w-full h-full text-white p-2" />
-                        )}
+                        <img
+                          src={
+                            userData?.profile_image
+                              ? `${API_BASEURL}${userData.profile_image}`
+                              : "/userProfile.png"
+                          }
+                          alt="avatar"
+                          className="w-10 h-10 ml-2 rounded-full border border-blue-500/40 object-cover"
+                        />
                       </div>
                     )}
                   </div>
