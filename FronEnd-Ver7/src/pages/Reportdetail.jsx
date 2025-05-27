@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FileText, Clock, Mail, ArrowLeft } from 'lucide-react';
 import Swal from 'sweetalert2';
+import { API_BASEURL } from '../lib/api'; // Adjust the import path as necessary
 
 const ReportDetail = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const ReportDetail = () => {
   const fetchReportDetail = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/data/${id}`, {
+      const response = await axios.get(`${API_BASEURL}/api/data/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReport(response.data);

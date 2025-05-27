@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const res = await axios.get("https://db11-34-141-200-104.ngrok-free.app", {
+      const res = await axios.get("https://dc41-34-75-70-120.ngrok-free.app", {
         headers: {
           Authorization: `Bearer ${token}`, // ✅ แนบใน header
         },

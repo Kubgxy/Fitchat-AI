@@ -18,8 +18,9 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { API_BASEURL } from "../../lib/api";
 
-const API_BASE = "https://3643-35-190-183-226.ngrok-free.app";
+const API_BASE = "https://dc41-34-75-70-120.ngrok-free.app";
 
 const ChatApp = () => {
   const messagesEndRef = useRef(null);
@@ -139,7 +140,7 @@ const ChatApp = () => {
     try {
       const token = localStorage.getItem("token"); // ✅ ดึง token มาใช้ตรงนี้
       const response = await axios.get(
-        "http://localhost:5000/api/auth/getuser",
+        `${API_BASEURL}/api/auth/getuser`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -168,6 +169,8 @@ const ChatApp = () => {
     try {
       const res = await axios.get(`${API_BASE}/get-my-chats`, { headers });
       setChats(res.data);
+      setChatTitle(res.data.title || "ชื่อแชท"); // ✅ ตั้งชื่อแชท
+      setChatCreatedAt(res.data.created_at || null); // ✅ ตั้งวันที่
     } catch (error) {
       console.error("❌ ดึงแชทไม่สำเร็จ:", error);
       setChats([]);
@@ -181,6 +184,8 @@ const ChatApp = () => {
         headers,
       });
       setMessages(res.data.messages || []);
+      setChatTitle(res.data.title || "ชื่อแชท");
+      setChatCreatedAt(res.data.created_at || null);
     } catch (err) {
       console.error("❌ โหลดแชทไม่สำเร็จ", err);
       setMessages([]);
@@ -393,6 +398,7 @@ const ChatApp = () => {
                           : "bg-gray-100"
                       }`}
                       onClick={async () => {
+                        navigate(`?chat_id=${chat.chat_id}`);
                         setSelectedChatId(chat.chat_id);
                         try {
                           const res = await axios.get(
@@ -467,7 +473,7 @@ const ChatApp = () => {
               <div className="w-12 h-12 bg-white/20 rounded-full overflow-hidden dark:bg-black/30 flex-shrink-0">
                 {userData?.profile_image ? (
                   <img
-                    src={`http://localhost:5000${userData.profile_image}`}
+                    src={`${API_BASEURL}${userData.profile_image}`}
                     alt="avatar"
                     className="w-full h-full object-cover"
                   />
@@ -495,7 +501,7 @@ const ChatApp = () => {
       {/* Chat Window */}
       <div
         className={`flex-1 flex flex-col h-[calc(100vh-100px)] mt-[100px] m-6 p-6 rounded-3xl  dark:bg-white/10 transition-all duration-300 ${
-          isSidebarOpen ? "ml-8" : "ml-[-250px] mr-[130px] "
+          isSidebarOpen ? "sm:ml-8" : "sm:ml-[-250px] sm:mr-[130px] ml-[250px] mr-0"
         }`}
       >
         {!hasStartedChat && messages.length === 0 ? (
@@ -508,9 +514,6 @@ const ChatApp = () => {
             >
               วันนี้คุณอยากให้เราช่วยอะไร
             </h1>
-            <span className="text-lg mb-8 dark:text-blue-900/70">
-              * แนะนำท่าออกกำลัง
-            </span>
             <div
               className="w-[900px] max-w-3xl flex items-center"
               data-aos="fade-right"
@@ -652,7 +655,7 @@ const ChatApp = () => {
                       <div>
                         {userData?.profile_image ? (
                           <img
-                            src={`http://localhost:5000${userData.profile_image}`}
+                            src={`${API_BASEURL}${userData.profile_image}`}
                             alt="avatar"
                             className="w-10 h-10 ml-2 rounded-full border border-blue-500/40 object-cover"
                           />

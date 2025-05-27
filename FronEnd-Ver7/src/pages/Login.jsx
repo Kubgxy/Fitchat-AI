@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { useTheme } from "../components/ThemeContext";
+import { API_BASEURL } from "../lib/api";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -23,7 +24,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${API_BASEURL}/api/auth/login`,
         formData
       );
 
@@ -161,7 +162,7 @@ const Login = () => {
               onChange={handleChange}
               required
               value={formData.username}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-blue-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-blue-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:text-black"
               placeholder="username"
             />
           </div>
@@ -180,7 +181,7 @@ const Login = () => {
               onChange={handleChange}
               required
               value={formData.password}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-blue-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-blue-500/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition dark:text-black"
               placeholder="••••••••"
             />
           </div>

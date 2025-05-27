@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { User, Edit2, Save } from "lucide-react";
 import moment from "moment";
 import "moment/locale/th";
+import { API_BASEURL } from "../lib/api";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -30,9 +31,10 @@ const Profile = () => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/auth/getuser", {
+      const res = await axios.get(`${API_BASEURL}/api/auth/getuser`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setUserData(res.data);
       setFormData(res.data);
       setLoading(false);
@@ -61,7 +63,7 @@ const Profile = () => {
       Object.entries(formData).forEach(([k, v]) => data.append(k, v));
       if (avatar) data.append("avatar", avatar);
 
-      await axios.patch("http://localhost:5000/api/auth/editdata", data, {
+      await axios.patch(`${API_BASEURL}/api/auth/editdata`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -80,12 +82,13 @@ const Profile = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        "http://localhost:5000/api/auth/change-password",
+        `${API_BASEURL}/api/auth/change-password`,
         passwordData,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
       Swal.fire("เปลี่ยนรหัสผ่านสำเร็จ", "", "success");
       setPasswordData({ current_password: "", new_password: "" });
     } catch (err) {
@@ -116,7 +119,7 @@ const Profile = () => {
                     />
                   ) : userData?.profile_image ? (
                     <img
-                      src={`http://localhost:5000${userData.profile_image}`}
+                      src={`${API_BASEURL}${userData.profile_image}`}
                       alt="avatar"
                       className="w-full h-full object-cover"
                     />

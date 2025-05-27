@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AlertCircle, Clock, FileText, Mail } from "lucide-react";
 import Swal from "sweetalert2";
+import { API_BASEURL } from "../lib/api"; // Adjust the import path as necessary
 
 const MyReports = () => {
   const [reports, setReports] = useState([]);
@@ -17,7 +18,7 @@ const MyReports = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/api/data/my-reports",
+        `${API_BASEURL}/api/data/my-reports`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

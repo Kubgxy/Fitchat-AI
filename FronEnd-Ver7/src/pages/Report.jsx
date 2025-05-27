@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Send, AlertCircle,MessageSquareWarning, } from "lucide-react";
+import { Send, AlertCircle, MessageSquareWarning } from "lucide-react";
 import Swal from "sweetalert2";
+import { API_BASEURL } from "../lib/api";
 
 const Report = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Report = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/data/create",
+        `${API_BASEURL}/api/data/create`,
         formData,
         {
           headers: {
@@ -76,7 +77,9 @@ const Report = () => {
           <div className="flex items-center justify-center   space-x-3 mb-8">
             <div className="flex items-center space-x-2">
               <AlertCircle className="w-8 h-8 text-white dark:text-black/70" />
-              <h1 className=" text-2xl font-bold text-white dark:text-black/80">รายงานปัญหา</h1>
+              <h1 className=" text-2xl font-bold text-white dark:text-black/80">
+                รายงานปัญหา
+              </h1>
             </div>
           </div>
           <div className="flex justify-end">
@@ -95,7 +98,9 @@ const Report = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* ประเภทปัญหา */}
             <div>
-              <label className="block text-white mb-2 dark:text-black/80">ประเภทปัญหา *</label>
+              <label className="block text-white mb-2 dark:text-black/80">
+                ประเภทปัญหา *
+              </label>
               <select
                 name="category"
                 value={formData.category}
@@ -123,7 +128,9 @@ const Report = () => {
 
             {/* หัวข้อ */}
             <div>
-              <label className="block text-white mb-2 dark:text-black/80">หัวข้อ *</label>
+              <label className="block text-white mb-2 dark:text-black/80">
+                หัวข้อ *
+              </label>
               <input
                 type="text"
                 name="title"
@@ -137,7 +144,9 @@ const Report = () => {
 
             {/* อีเมล */}
             <div>
-              <label className="block text-white mb-2 dark:text-black/80">อีเมลติดต่อกลับ *</label>
+              <label className="block text-white mb-2 dark:text-black/80">
+                อีเมลติดต่อกลับ *
+              </label>
               <input
                 type="email"
                 name="email"
@@ -151,7 +160,9 @@ const Report = () => {
 
             {/* รายละเอียด */}
             <div>
-              <label className="block text-white mb-2 dark:text-black/80">รายละเอียด *</label>
+              <label className="block text-white mb-2 dark:text-black/80">
+                รายละเอียด *
+              </label>
               <textarea
                 name="description"
                 value={formData.description}

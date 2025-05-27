@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
 import { useTheme } from "../components/ThemeContext";
+import { API_BASEURL } from "../lib/api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -99,9 +100,9 @@ const Register = () => {
   };
 
   const validateStep1 = () => {
-    const {  email, username, password, confirm_password } = formData;
+    const { email, username, password, confirm_password } = formData;
 
-    if ( !email || !username || !password || !confirm_password) {
+    if (!email || !username || !password || !confirm_password) {
       Swal.fire({
         icon: "warning",
         title: "กรอกข้อมูลไม่ครบ",
@@ -144,7 +145,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/auth/register", data, {
+      await axios.post(`${API_BASEURL}/api/auth/register`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
