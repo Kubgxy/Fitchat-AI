@@ -20,7 +20,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { API_BASEURL } from "../../lib/api";
 
-const API_BASE = "https://b89e-34-75-70-120.ngrok-free.app";
+const API_BASE = "https://30c3-34-75-70-120.ngrok-free.app";
 
 const ChatApp = () => {
   const messagesEndRef = useRef(null);
@@ -190,7 +190,7 @@ const ChatApp = () => {
   };
 
   useEffect(() => {
-    if (chatId) {
+    if (chatId && chatId !== selectedChatId) {
       setSelectedChatId(chatId);
       fetchChatById();
     }
@@ -273,6 +273,7 @@ const ChatApp = () => {
 
         chatId = res.data.chat_id;
         setSelectedChatId(chatId);
+        navigate(`?chat_id=${chatId}`);
         setMessages((prev) => [
           { role: "assistant", content: res.data.message },
           ...prev,
@@ -290,7 +291,7 @@ const ChatApp = () => {
       );
 
       const aiMsg = { role: "assistant", content: res.data.response };
-      setMessages((prev) => [...prev, aiMsg]);
+      setMessages((prev) => [...(prev || []), aiMsg]);
     } catch (error) {
       console.error("❌ ส่งข้อความไม่สำเร็จ:", error);
     } finally {
@@ -528,7 +529,10 @@ const ChatApp = () => {
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-xl shadow"
+                disabled={isTyping}
+                className={`bg-blue-500 text-white px-4 py-2 rounded-xl shadow ${
+                  isTyping ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 data-aos="fade-left"
                 data-aos-delay="300"
                 onClick={sendMessage}
