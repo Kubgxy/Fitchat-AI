@@ -20,7 +20,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { API_BASEURL } from "../../lib/api";
 
-const API_BASE = "https://df71-34-75-70-120.ngrok-free.app";
+const API_BASE = "https://eacf-35-229-174-85.ngrok-free.app";
 
 const ChatApp = () => {
   const messagesEndRef = useRef(null);
