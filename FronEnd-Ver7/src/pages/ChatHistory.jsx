@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 
-const API_BASE = "https://5c18-35-229-174-85.ngrok-free.app";
+const API_BASE = "https://7ef2-35-236-173-189.ngrok-free.app";
 const token = localStorage.getItem("token");
 const headers = {
   Authorization: `Bearer ${token}`,
